@@ -27,6 +27,7 @@ operating systems.
 %package -n python-bpython
 Summary:	bpython shell modules
 Group:		Libraries/Python
+Requires:	python-pygments
 %pyrequires_eq	python-devel-tools
 %pyrequires_eq	pydoc
 
