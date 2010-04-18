@@ -4,12 +4,12 @@
 %define		pname	bpython
 Summary:	bpython - a fancy interface to the Python interpreter
 Name:		bpython
-Version:	0.9.5.2
+Version:	0.9.6.2
 Release:	1
 License:	MIT
 Group:		Applications/Shells
 Source0:	http://bpython-interpreter.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	8c6022907d2bff9d0193f3d299157443
+# Source0-md5:	d30fdb663fa9957c21c63108ed249b59
 URL:		http://bpython-interpreter.org/
 BuildRequires:	pydoc
 BuildRequires:	python-devel
