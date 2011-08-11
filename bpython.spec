@@ -1,8 +1,8 @@
 # TODO:
 # - check docs folder for valuable files
 #
-%define		pname	bpython
 Summary:	bpython - a fancy interface to the Python interpreter
+Summary(pl.UTF-8):	bpython - fantazyjny interfejs do interpretera Pythona
 Name:		bpython
 Version:	0.9.7.1
 Release:	1
@@ -16,7 +16,7 @@ BuildRequires:	python-devel
 BuildRequires:	python-devel-tools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
-Requires:	python-%{name} = %{version}-%{release}
+Requires:	python-bpython = %{version}-%{release}
 Requires:	python-distribute >= 0.6.10
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,27 +25,55 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 bpython is a fancy interface to the Python interpreter for Unix-like
 operating systems.
 
+%description -l pl.UTF-8
+bpython to fantazyjny interfejs do interpretera Pythona przeznaczony
+dla uniksowych systemów operacyjnych.
+
+%package gtk
+Summary:	GTK+ bpython interface
+Summary(pl.UTF-8):	Interfejs GTK+ bpythona
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	python-pygtk-gtk >= 2:2.0
+
+%description gtk
+GTK+ bpython interface.
+
+%description gtk -l pl.UTF-8
+Interfejs GTK+ bpythona.
+
 %package -n python-bpython
 Summary:	bpython shell modules
+Summary(pl.UTF-8):	Moduły powłoki bpython
 Group:		Libraries/Python
 Requires:	python-pygments
-%pyrequires_eq	python-devel-tools
 %pyrequires_eq	pydoc
+%pyrequires_eq	python-devel-tools
 
 %description -n python-bpython
 bpython is a fancy interface to the Python interpreter for Unix-like
 operating systems.
 
+%description -n python-bpython -l pl.UTF-8
+bpython to fantazyjny interfejs do interpretera Pythona przeznaczony
+dla uniksowych systemów operacyjnych.
+
 %package -n python-bpdb
-Summary:	bpdb module
+Summary:	bpdb module - PDB extension
+Summary(pl.UTF-8):	Moduł bpdb - rozszerzenie PDB
 Group:		Libraries/Python
-%pyrequires_eq	python-devel-tools
+Requires:	python-bpython = %{version}-%{release}
 %pyrequires_eq	pydoc
+%pyrequires_eq	python-devel-tools
 
 %description -n python-bpdb
 BPDB is an extension to PDB which allows you to press B in a PDB
 session which will let you be dropped into a bpython sessions with the
-current PDB locals()
+current PDB locals().
+
+%description -n python-bpdb -l pl.UTF-8
+BPDB to rozszerzenie PDB pozwalające nacisnąć B w sesji PDB, aby
+przejść do sesji bpythona z bieżącą zawartością locals() z PDB.
 
 %prep
 %setup -q
@@ -53,28 +81,32 @@ current PDB locals()
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python ./setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
+%{__python} setup.py install \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
 
 %py_postclean
-rm -rf $RPM_BUILD_ROOT%{_docdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/bpython
 %{_desktopdir}/bpython.desktop
-%{_mandir}/man1/*.1*
-%{_mandir}/man5/*.5*
+%{_mandir}/man1/bpython.1*
+%{_mandir}/man5/bpython-config.5*
+
+%files gtk
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/bpython-gtk
 
 %files -n python-bpython
 %defattr(644,root,root,755)
-%doc README
-%{py_sitescriptdir}/%{pname}
-%{py_sitescriptdir}/*.egg-info
+%doc AUTHORS CHANGELOG LICENSE README ROADMAP TODO
+%{py_sitescriptdir}/bpython
+%{py_sitescriptdir}/bpython-%{version}-py*.egg-info
 
 %files -n python-bpdb
 %defattr(644,root,root,755)
-%doc README
 %{py_sitescriptdir}/bpdb
