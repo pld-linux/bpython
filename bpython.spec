@@ -81,9 +81,7 @@ przejść do sesji bpythona z bieżącą zawartością locals() z PDB.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__python} setup.py install \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 %py_postclean
 
