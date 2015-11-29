@@ -15,7 +15,7 @@ BuildRequires:	pydoc
 BuildRequires:	python-devel
 BuildRequires:	python-devel-tools
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 Requires:	python-bpython = %{version}-%{release}
 Requires:	python-distribute >= 0.6.10
 BuildArch:	noarch
