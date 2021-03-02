@@ -5,7 +5,7 @@ Summary:	bpython - a fancy interface to the Python interpreter
 Summary(pl.UTF-8):	bpython - fantazyjny interfejs do interpretera Pythona
 Name:		bpython
 Version:	0.9.7.1
-Release:	3
+Release:	4
 License:	MIT
 Group:		Applications/Shells
 Source0:	http://bpython-interpreter.org/releases/%{name}-%{version}.tar.gz
